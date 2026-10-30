@@ -1,0 +1,14 @@
+{
+  "variables": {
+    "APP_NAME": { "type": "string" },
+    "APP_ENV": { "type": "string", "choices": ["development", "staging", "production"] },
+    "DEBUG": { "type": "bool" },
+    "PORT": { "type": "port" },
+    "DATABASE_URL": { "type": "url", "secret": true },
+    "REDIS_URL": { "type": "url", "required": false },
+    "API_TOKEN": { "type": "string", "secret": true },
+    "SMTP_FROM": { "type": "email" },
+    "LOG_LEVEL": { "type": "string", "choices": ["debug", "info", "warn", "error"] },
+    "RETRY_COUNT": { "type": "int" }
+  }
+}
