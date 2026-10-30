@@ -16,6 +16,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - `envscope init`: generate a schema from `.env.example` by guessing types.
 - `envscope version`.
 - Unit and end-to-end tests (34 tests) using only the standard library.
-- GitHub Actions CI on Python 3.9, 3.12 and 3.13.
+- GitHub Actions CI on Python 3.11, 3.12 and 3.13.
 
 [0.1.0]: https://github.com/NicolaRebecca/envscope/releases/tag/v0.1.0

@@ -7,7 +7,7 @@ name = "envscope"
 version = "0.1.0"
 description = "Audit .env files against .env.example and a JSON schema without printing secrets."
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.11"
 license = { text = "MIT" }
 authors = [{ name = "Nicola Rebecca" }]
 keywords = ["dotenv", "env", "configuration", "cli", "devops", "ci"]
@@ -17,6 +17,9 @@ classifiers = [
   "Intended Audience :: Developers",
   "License :: OSI Approved :: MIT License",
   "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
   "Programming Language :: Python :: 3 :: Only",
   "Topic :: Software Development :: Quality Assurance",
   "Topic :: System :: Systems Administration",

@@ -2,7 +2,7 @@
 
 **A zero-dependency CLI that audits `.env` files against `.env.example` and a JSON schema — and never prints secret values.**
 
-[![Python 3.9+](https://img.shields.io/badge/python-3.9%2B-blue)](#requirements)
+[![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue)](#requirements)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
 `envscope` catches the boring, expensive mistakes: a key added to `.env.example` but missing from production, a typo in `PORT`, a stale flag left in `.env`, a duplicate assignment that silently wins, a secret accidentally echoed to a CI log.
@@ -32,7 +32,7 @@ Environment drift is invisible until something breaks:
 
 ## Requirements
 
-- Python 3.9 or newer
+- Python 3.11 or newer
 - macOS, Linux, or Windows
 
 ## Install
@@ -179,7 +179,7 @@ The `--json` payload is stable and includes `ok`, `summary` and an `issues` arra
 PYTHONPATH=src python -m unittest discover -s tests -v
 ```
 
-34 tests, no dependencies. The CI workflow runs the suite on Python 3.9, 3.12 and 3.13.
+34 tests, no dependencies. The CI workflow runs the suite on Python 3.11, 3.12 and 3.13.
 
 - Design decisions: [`docs/design.md`](docs/design.md)
 - Captured example output: [`docs/demo.txt`](docs/demo.txt)

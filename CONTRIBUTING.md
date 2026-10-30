@@ -32,7 +32,7 @@ The demo is supposed to fail: it contains four intentional errors and two warnin
 ## Code style
 
 - Standard library only for runtime code.
-- Python 3.9 compatibility: use `from __future__ import annotations`; no `X | None` at runtime without it.
+- Python 3.11+ only: use `from __future__ import annotations` for forward references; no support burden for older versions.
 - Public functions get a short docstring explaining *why*, not a restatement of the name.
 - No comments that describe obvious code.
 - Keep output stable: tests and CI depend on exit codes and JSON shape.
