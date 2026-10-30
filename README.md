@@ -25,6 +25,7 @@ Environment drift is invisible until something breaks:
 - **Drift detection** — missing, extra and empty keys between `.env`, `.env.example` and the schema.
 - **Type validation** — `string`, `int`, `float`, `bool`, `port`, `url`, `email`, plus `pattern` and `choices`.
 - **Duplicate detection** — reports every line where a key is defined more than once.
+- **Multiline values** — double-quoted values may span lines, with newlines preserved (handy for PEM-style keys); unterminated values are parse errors.
 - **Secret-aware** — values flagged `secret` (or matching names such as `*_TOKEN`, `*_PASSWORD`, `*_API_KEY`) are never printed.
 - **CI-friendly** — `--json` output and stable exit codes.
 - **Zero dependencies** — Python 3.9+, standard library only.
@@ -179,7 +180,7 @@ The `--json` payload is stable and includes `ok`, `summary` and an `issues` arra
 PYTHONPATH=src python -m unittest discover -s tests -v
 ```
 
-34 tests, no dependencies. The CI workflow runs the suite on Python 3.11, 3.12 and 3.13.
+40 tests, no dependencies. The CI workflow runs the suite on Python 3.11, 3.12 and 3.13.
 
 - Design decisions: [`docs/design.md`](docs/design.md)
 - Captured example output: [`docs/demo.txt`](docs/demo.txt)
