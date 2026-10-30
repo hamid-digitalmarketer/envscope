@@ -1,0 +1,10 @@
+envscope 0.1.0 | env=examples/.env | example=examples/.env.example | schema=examples/envscope.json
+------------------------------------------------------------------------------
+ERROR             key DEBUG: must be true/false (or 1/0, yes/no, on/off) (line 4)
+ERROR             key PORT: must be between 1 and 65535 (line 5)
+WARN              missing key REDIS_URL
+ERROR             key SMTP_FROM: must be a valid email address (line 8)
+ERROR             key LOG_LEVEL: must be one of 'debug', 'info', 'warn', 'error' (line 9)
+WARN              key EXTRA_FLAG is set in .env but not in .env.example or schema (line 11)
+------------------------------------------------------------------------------
+FAIL 9/10 keys present | 4 errors | 2 warnings

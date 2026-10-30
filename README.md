@@ -181,6 +181,9 @@ PYTHONPATH=src python -m unittest discover -s tests -v
 
 34 tests, no dependencies. The CI workflow runs the suite on Python 3.9, 3.12 and 3.13.
 
+- Design decisions: [`docs/design.md`](docs/design.md)
+- Captured example output: [`docs/demo.txt`](docs/demo.txt)
+
 ## Roadmap
 
 See [`docs/roadmap.md`](docs/roadmap.md). The first three issues are intentionally small and self-contained.
