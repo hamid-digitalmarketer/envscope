@@ -68,5 +68,61 @@ PORT=8080 # inline comment
         self.assertFalse(is_valid_key("APP-URL"))
 
 
+class MultilineValueTests(unittest.TestCase):
+    def test_two_line_double_quoted_value(self) -> None:
+        text = (
+            'PRIVATE_KEY="-----BEGIN KEY-----\n'
+            "abc\n"
+            '-----END KEY-----"\n'
+        )
+        result = parse_env(text)
+        self.assertEqual(result.errors, [])
+        self.assertEqual(
+            result.as_dict()["PRIVATE_KEY"],
+            "-----BEGIN KEY-----\nabc\n-----END KEY-----",
+        )
+        self.assertEqual(result.entries[0].line, 1)
+
+    def test_closing_quote_on_later_line_ends_value(self) -> None:
+        text = 'MSG="start\nend"\nNEXT=1\n'
+        result = parse_env(text)
+        self.assertEqual(result.errors, [])
+        self.assertEqual(result.as_dict()["MSG"], "start\nend")
+        self.assertEqual(result.as_dict()["NEXT"], "1")
+        self.assertEqual(result.entries[0].line, 1)
+
+    def test_escaped_quote_inside_multiline_value(self) -> None:
+        text = 'MSG="line1\nline2 with \\"quoted\\" words"\n'
+        result = parse_env(text)
+        self.assertEqual(result.errors, [])
+        self.assertEqual(
+            result.as_dict()["MSG"],
+            'line1\nline2 with "quoted" words',
+        )
+
+    def test_unterminated_multiline_value_is_error(self) -> None:
+        text = 'A=1\nBAD="never closed\nstill=part of the value\n'
+        result = parse_env(text)
+        self.assertEqual(
+            result.errors,
+            ["line 2: unterminated double-quoted value"],
+        )
+        self.assertEqual(result.keys, ["A"])
+
+    def test_crlf_multiline_value_preserves_newlines(self) -> None:
+        text = 'KEY="first\r\nsecond"\r\nOTHER=1\r\n'
+        result = parse_env(text)
+        self.assertEqual(result.errors, [])
+        self.assertEqual(result.as_dict()["KEY"], "first\r\nsecond")
+        self.assertEqual(result.as_dict()["OTHER"], "1")
+
+    def test_single_quoted_values_stay_literal_and_single_line(self) -> None:
+        text = "KEY='line1\nline2'\n"
+        result = parse_env(text)
+        self.assertEqual(result.as_dict().get("KEY"), "line1")
+        self.assertEqual(result.entries[0].quoted, "'")
+        self.assertEqual(len(result.errors), 1)
+
+
 if __name__ == "__main__":
     unittest.main()
